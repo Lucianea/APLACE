@@ -1,0 +1,575 @@
+---
+title: "A matemática da AHP para a escolha coerente"
+subtitle: ""
+title-slide-attributes:
+    data-background-image: /capa-titulo.png
+    data-background-size: contain
+    data-background-opacity: "0.5"
+author: "Luciane Ferreira Alcoforado, Matemática, Especialista na linguagem R" # Ex: Maria Silva, Matemática & Especialista em Decisão
+format:
+  revealjs:
+    theme: simple # Ou outro tema que goste: black, white, league, serif, ...
+    slide-number: true
+    show-slide-number: all
+    logo: logoGrupo.jpg # Se tiver uma logo
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## Ou isto ou aquilo - Cecília Meireles
+
+<p style="font-size: 70%;">Ou se calça a luva e não se põe o anel, ou se põe o anel e não se calça a luva!</p>
+
+<p style="font-size: 70%;">Ou se tem chuva e não se tem sol, ou se tem sol e não se tem chuva!</p>
+
+<p style="font-size: 70%;">Quem sobe nos ares não fica no chão, quem fica no chão não sobe nos ares.</p>
+
+<p style="font-size: 70%;">É uma grande pena que não se possa estar ao mesmo tempo nos dois lugares!</p>
+
+<p style="font-size: 70%;">Ou guardo o dinheiro e não compro o doce, ou compro o doce e gasto o dinheiro.</p>
+
+**Ou isto ou aquilo: ou isto ou aquilo… e vivo escolhendo o dia
+inteiro!**
+
+**Não sei se brinco, não sei se estudo, se saio correndo ou fico
+tranquilo.**
+
+**Mas não consegui entender ainda qual é melhor: se é isto ou aquilo.**
+
+
+## Bem-vindos ao Mundo das Escolhas! ✨
+
+Quem nunca teve dúvidas sobre o que escolher? 🤦‍♀️ Pense em escolhas
+simples.
+
+![](gato-com-duvida.gif){fig-align="center" width=190%}
+
+
+## O Dilema Universal da Decisão 🤔
+
+Viver é tomar **decisões** a todo momento.
+
+![](duvida.gif){fig-align="center"}
+
+## Escolhas que levam ao arrependimento  😅
+
+- Deixar-se levar pelo impulso/medo (emoções)
+
+- Falta de propósito/objetivo 
+
+- Transferir a responsabilidade para outros
+
+- Não analisar os cenários/parâmetros
+
+
+
+## Prazer, sou Luciane! 🙋‍♀️
+
+
+Sou matemática por formação e atuo como professora na UFF e na AFA. Minha área de
+especialização é a matemática, a otimização e a estatística.
+
+![](matematica.gif)
+
+## Compartilho conhecimento! 🙋‍♀️
+
+Sou autora de diversos livros sobre a linguagem R.
+
+
+![](capa_livro_AltaBooks.jpg){width=30% fig-align="center"}
+
+<https://www.amazon.com.br/Utilizando-linguagem-manipulação-visualização-elaboração/dp/8550814423>
+
+## Mandalas 🙋‍♀️
+
+
+![Livro Mandala](capa_livro_mandalas.png){width=30%}
+
+## AHP aplicada 🙋‍♀️
+
+Um deles é sobre o **método**
+que abordaremos hoje.
+
+
+![Livro AHP](capa_livro_AHP.png)
+
+## Método AHP criado por Thomás Saaty 💡
+
+::: {.fragment .fade-out}
+A boa notícia é que não é preciso ser um gênio para organizar nossas **decisões**.
+:::
+
+::: {.fragment .fade-in}
+
+![https://www.youtube.com/watch?v=AtutEppDCN0](saaty.png){width=50%}
+:::
+
+## Professor Thomas L. Saaty (1926-2017) {.smaller}
+
+
+"Nascido em Mosul, no Iraque (então sob administração britânica), em 1926, Saaty trilhou uma trajetória acadêmica singular. Ele obteve seu Mestrado em Física e seu PhD em Matemática pela renomada Yale University, além de ter estudado na Universidade de Paris. Ele era um visionário que percebeu que o maior desafio da tomada de decisão está em medir o Intangível."
+
+"Ele criou o Analytic Hierarchy Process (AHP) como uma solução matemática para os problemas mais complexos do mundo — do planejamento estratégico à alocação de recursos."
+
+
+
+## A Motivação de Saaty: O Dilema do Desarmamento {.smaller}
+
+
+1. Durante acordos entre EUA e União Soviética, era difícil decidir: “Quantos tanques equivalem a quantos aviões?”
+
+2. Economistas e teóricos de jogos não conseguiam responder com rapidez ou clareza — faltava uma forma prática de comparar itens diferentes.
+
+3. Saaty percebeu que usamos comparações intuitivas para decidir. Isso o levou a criar o AHP: um método para transformar julgamentos humanos em decisões estruturadas.
+
+![](saaty-origemahp.png)
+
+
+
+## Professor Thomas L. Saaty (1926-2017) {.smaller}
+
+
+"Em essência, a missão de Saaty, refletida na fundação que criou, era ajudar as pessoas a fazerem escolhas mais racionais. O AHP é a disciplina que nos salva de sermos dominados pelas ambiguidades e nos dá um mapa numérico para o nosso propósito."
+
+![](fundacao_saaty.png)
+
+
+## Aplicativo AHPWIZARD 🙋‍♀️
+
+
+E tenho um aplicativo de apoio à decisão registrado no INPI.
+
+![AHPWIZARD](ahpwizard.png)
+
+
+------------------------------------------------------------------------
+
+## Falando em Cálculos... 🤓
+
+...a matemática da decisão tem seus fundamentos profundos! 
+
+$$
+w_i = \frac{1}{n} \sum_{j=1}^{n} \frac{a_{ij}}{\sum_{k=1}^{n} a_{kj}}
+$$
+
+
+😅 Esta é apenas uma amostra de que, sim, existe uma **lógica** estruturada
+por trás, um "motor" que sustenta a metodologia.
+
+
+
+## O Propósito de Nossa Conversa Hoje 🎯
+
+Meu objetivo é demonstrar que é possível aprimorar a forma
+como se toma **decisões**, usando a **lógica**.
+
+Não se trata de anular a intuição, mas de oferecer-lhe um direcionamento
+mais claro.
+
+![](direcao.gif){fig-align="center"}
+
+Afinal, quem não deseja tomar decisões mais acertadas e com maior
+segurança? 😉
+
+
+
+## Intuição e Valores 🙈
+
+::: {.fragment .fade-out}
+Intuição: ferramenta poderosa, conexão com
+nossos sentimentos mais profundos.
+:::
+
+::: {.fragment .fade-in}
+Valores: Quem eu sou, o que eu valorizo e o que estou disposta a sacrificar nesta escolha específica?
+
+![Pensando Muito](garfield_comendo.gif)
+:::
+
+
+
+## Histórias Que Nos Fazem Refletir 😂
+
+-   **A busca pelo tênis perfeito:** A Luiza precisa de um tênis novo.
+    Em vez de simplesmente comprar o mais barato ou o que está na moda, ela busca por conforto.
+    
+![](sapato.gif)
+
+
+## Intui + ação 😂
+
+![](sapato.gif){width=10%}
+
+-   Intuição: Ir até a loja do João do Bola Branca.
+
+![](loja.gif){width=60%}
+
+
+## Passo 1: O Ponto de Partida – O Objetivo 
+
+Pergunte: O Que Devo Ser/Fazer?"
+
+
+![](circulo.png){fig-align="center"}
+
+
+## Passo 2: O Desdobramento – Os Critérios 
+
+Pergunte: Quem Eu Sou e o Que Eu Valorizo?" (Ex: Custo, Prazer/Realização, Impacto, Tempo).
+
+
+![](criterios.png){fig-align="center"}
+
+## Passo 3: A Estrutura – A Árvore Hierárquica 
+
+Mapa de ação: nossos valores abstratos em uma arquitetura lógica tridimensional.
+
+Objetivo: Comprar um tênis
+
+Critérios: 1-Conforto; 2-Preço; 3-Durabilidade
+
+Alternativas: Os modelos disponíveis na loja
+
+
+![](arvore.png){fig-align="center"}
+
+```{r eval=F}
+flowchart TD
+    A((Objetivo))-->B((Critério 1))
+    A((Objetivo))-->C((Critério 2))
+    A((Objetivo))-->D((Critério 3))
+B-->E[Alternativas: A1, A2, ...,Am]
+    C-->E
+    D-->E
+```
+
+
+
+
+
+------------------------------------------------------------------------
+
+
+## Passo 4: Como Ponderar o Que É Mais Importante? (A Comparação) ✨
+
+
+Agora vem a etapa crucial: a **comparação**. Em vez de atribuir uma
+pontuação absoluta, comparamos:
+
+"O **critério 1** é mais importante que o **critério 2**?
+
+Quanto mais
+importante?"
+
+
+## A escala fundamental de Saaty✨
+
+![](escala_saaty.png){fig-align="center"}
+
+
+
+## Matriz de julgamentos
+
+- Confrontamos os critérios dois a dois: A-B; A-C e B-C.
+
+- Regra da reciprocidade: A x B: 5 então B x A: 1/5
+
+|     | A   | B   | C   |
+|-----|-----|-----|-----|
+| A   | 1   |    |     |
+| B   |  | 1   |     |
+| C   |     |     | 1   |
+|     |     |     |     |
+
+
+
+
+## Objetivo: Comprar um tênis
+
+A (Conforto) é quão mais importante que B (preço): 5 (importância essencial)
+
+|     | A   | B   | C   |
+|-----|-----|-----|-----|
+| A   | 1   | 5   |     |
+| B   | 1/5 | 1   |     |
+| C   |     |     | 1   |
+|     |     |     |     |
+
+## Objetivo: Comprar um tênis
+
+A (Conforto) é mais importante que B (preço): 5
+
+A é pouco mais importante que C (durabilidade): 2
+
+|     | A   | B     | C   |
+|-----|-----|-------|-----|
+| A   | 1.00   | 5.00     |  2.00   |
+| B   | 0.20 | 1.00     |  |
+| C   | 0.50  |  | 1.00   |
+|     |     |       |     |
+
+## Matemática como Guardiã da Integridade do seu julgamento
+
+A (Conforto) é mais importante que B: 5
+
+A é pouco mais importante que C (durabilidade): 2
+
+B (preço) é moderadamente mais importante que C: 3
+
+|     | A   | B    | C   |CR|
+|-----|-----|------|-----|---|
+|  A   | 1.00   | 5.00     |  2.00   |
+| B   | 0.20 | 1.00     | 3.00 |
+| C   | 0.50  |0.33  | 1.00   |
+|     |     |       |     |**0.40**
+
+## Corrigindo o julgamento inconsistente
+
+**A razão de consistência deve ser menor do que 0.1**
+
+```{r include=F }
+library(AHPWR)
+M=rbind(A=c(1,5,2), B=c(1/5,1,3), C=c(1/2,1/3,1));round(M,2)
+CR(M)
+```
+Erro na lógica: A é mais importante que B: 5;
+
+B é moderadamente mais importante que C: 3;
+
+A comparado com  C deve ser > 5, por exemplo 7
+
+```{r include=F}
+library(AHPWR)
+M=rbind(A=c(1,5,7), B=c(1/5,1,3), C=c(1/7,1/3,1));round(M,2)
+CR(M)
+round(autoVetor(M),2)
+```
+
+|     | A   | B    | C   |CR|
+|-----|-----|------|-----|---|
+|  A   | 1.00   | 5.00     |  7.00   |
+| B   | 0.20 | 1.00     | 3.00 |
+| C   | 0.14  |0.33  | 1.00   |
+| Pesos    |  0.73   |  0.19     |  0.08   |**0.06**
+
+
+## Caso da IEDA: Da Moeda à Matriz 😕
+
+Objetivo: Lançar seu livro
+
+Critérios: *Indefinidos*
+
+Alternativas: À tarde ou À noite?
+
+
+Métodos não científicos: lançar uma moeda, usar um pêndulo, pedir opiniões.🤔
+
+**Ela precisa estabelecer critérios para sua escolha!!!**
+
+Mudar a pergunta de *'Que horas devo lançar?' * para: **'Quem eu sou e o que eu valorizo neste lançamento?'**
+
+
+## Resgatando a IEDA 
+
+**'Quem eu sou e o que eu valorizo neste lançamento?'**
+
+![](arvore-ieda.png){width=70%}
+
+## Na prática
+
+**Mídia vs. Conforto:** IEDA considera a Atenção da Mídia *moderadamente mais importante* que o conforto do Público.
+
+(Se não tiver mídia, o evento perde impacto, mesmo que seja confortável), então ela atribui 
+
+valor **3**.
+
+
+
+
+|     |  Mídia   | Conforto   | Custo | Localização |
+|-----|-----|------|-----|---|
+| Mídia   | 1.00   | 3.00     |     | |
+| Conforto   | 0.33 | 1.00     |  | |
+| Custo   |   |  | 1.00   | |
+| Localização    |     |       |     |1.00 |
+
+## Os julgamentos da IEDA
+
+
+|     | Mídia    | Conforto    | Custo    | Localização|
+|-----|------|------|------|------|
+| Mídia   | 1    | 3    | 5 | 1/3|
+| Conforto   | 1/3 | 1    | 3   |  1/3 |
+| Custo   | 1/5    | 1/3 | 1    | 1/5 |
+| Localização   |  3    |   3   |   5   | 1 |
+|     |      |     |      |  |
+|  Pesos AHP   |  0.29    |   0.14   |   0.06   | 0.5 |
+
+```{r include=F}
+library(AHPWR)
+M=rbind(A=c(1,3,5,1/3), B=c(1/3,1,3,1/3), C=c(1/5,1/3,1, 1/5), D=c(3,3,5,1));round(M,2)
+CR(M)
+round(autoVetor(M),2)
+sum(autoVetor(M))
+
+
+```
+
+CR = 0.07 < 0.1 👍
+
+## O Julgamento Final: Como as Alternativas Performam?
+
+Construa matrizes de julgamento para cada critério!
+
+Matriz 1: Comparação das Alternativas (Tarde vs. Noite) sob a Lente de do CRITÉRIO 1 (Atenção da Mídia/Imprensa).
+
+|     | Tarde    | Noite    | |
+|-----|------|------|------|
+| Tarde   | 1    | 1/7    | |
+| Noite   | 7 | 1    |  |
+|     |      |     |       |
+|  Pesos AHP   |  0.12   |   0.88   |    |
+
+```{r include=F}
+library(AHPWR)
+M=rbind(A=c(1,1/7), B=c(7,1)); round(M,2)
+CR(M)
+round(autoVetor(M),2)
+sum(autoVetor(M))
+
+
+```
+
+## O Julgamento Final
+
+como a vida é complexa, o AHP repete este processo para o Conforto, o Custo e a Localização. No final, a Matemática nos aponta a alternativa que, de forma racional e coerente, maximiza o valor da decisão."
+
+
+
+## Passo 5: A Escolha Final ✅
+
+O **algoritmo** indica qual opção se alinha melhor com *suas* próprias prioridades. Não
+é uma **decisão** imposta, é a sua, fundamentada!
+
+
+```{r include=F}
+library(AHPWR)
+M1=rbind(A=c(1,3,5,1/3), B=c(1/3,1,3,1/3), C=c(1/5,1/3,1, 1/5), D=c(3,3,5,1))
+M2=rbind(A=c(1,1/7), B=c(7,1))
+M3=rbind(A=c(1,1/5), B=c(5,1))
+M4=rbind(A=c(1,6), B=c(1/6,1))
+M5=rbind(A=c(1,1/2), B=c(2,1))
+base=list(M1,M2,M3,M4,M5)
+table1 = ahp_geral(base)
+transforma_tabela(table1)
+formata_tabela(table1)
+```
+
+```{r}
+formata_tabela(table1)
+```
+
+
+## Mesmo objetivo decisões diferentes
+
+Objetivo: Ir à festa, Critérios: C1-Saúde e C2-Diversão; Alternativas: A-Ir ou B-Não ir
+
+:::: {.columns}
+::: {.column width="50%"}
+Vera: valoriza a diversão
+
+![](vera.png)
+
+```{r include=FALSE}
+M1=rbind(A=c(1,1/5), B=c(5,1))
+M2=rbind(A=c(1,1/7), B=c(7,1))
+M3=rbind(A=c(1,7), B=c(1/7,1))
+base=list(M1,M2,M3)
+table1 = ahp_geral(base)
+formata_tabela(table1)
+```
+
+
+:::
+::: {.column width="50%"}
+João: valoriza a saúde
+
+![](joao.png)
+
+```{r include=FALSE}
+M1=rbind(A=c(1,5), B=c(1/5,1))
+M2=rbind(A=c(1,1/7), B=c(7,1))
+M3=rbind(A=c(1,7), B=c(1/7,1))
+base=list(M1,M2,M3)
+table1 = ahp_geral(base)
+
+formata_tabela(table1)
+```
+:::
+::::
+
+## Sua Vida, Suas Melhores Escolhas 🏆
+
+Essa **estruturação** não se restringe a grandes corporações ou projetos
+de engenharia.
+
+Essa **lógica** é aplicável no cotidiano: \* "Qual presente escolher
+para alguém especial?" 🎁 \* "Qual lugar devo passar as férias?" 🎨 \*
+"Devo aceitar aquela proposta de parceria?" 🤝
+:::
+
+
+
+## O Equilíbrio Perfeito: Lógica + Intuição = Poder! 🤝
+
+
+Com um mapa, evitam-se obstáculos e atinge-se o destino com maior certeza.
+
+Pense assim: a intuição diz: "Vá por ali!". A **lógica** pergunta: "Quais são meus valores?". Juntas, elas o(a) conduzem na direção do seu propósito de vida! 😉
+
+
+
+
+
+## O Sr. Valéry e a Casa de Férias 🪦
+
+"Eu quero uma casa com quatro portas, em quadrado, sem nenhuma parede. Evitarei perder-me em compartimentos. Seriam as férias perfeitas."
+
+"Só consigo repousar-me se não tiver que decidir nada, e para que isso aconteça é indispensável não existirem opções. Parece-me lógico."
+
+<p style="font-size: 60%;">Trecho de "O senhor Valéry e a lógica" de Gonçalo M. Tavares, 2011.</p>
+
+
+## A Matemática não promete, direciona 🧭
+
+⚖️ 🤔<p style="font-size: 70%;">**Angústia:** a dor de ter que escolher, a perda de não poder ter o "isto e o aquilo" ao mesmo tempo.</p> 
+
+⚰️<p style="font-size: 70%;">**A fuga:** O sonho da casa sem paredes, onde não há decisão. É o desejo do repouso final.</p> 
+
+*Mas a vida nos exige a responsabilidade de estarmos vivos.*
+
+<p style="font-size: 70%;">**Alinhamento:** Analytic Hierarchy Process (AHP) é uma resposta digna. Não nos promete zerar a perda ou evitar o "isto ou aquilo". Nossas matrizes e seus julgamentos transformam a angústia em direção numérica. O vetor que se obtém é a prova de que, ao aceitar o limite da vida, ganhamos a coerência do nosso **Propósito**.</p> 🌳 ⚖️
+
+## Fechamento: Antes de decidir, reflita…
+
+<ul>
+    <li><strong>1. Toda escolha envolve perda.</strong><br>
+      Não dá para ter “isto e aquilo” ao mesmo tempo — mas dá para escolher com propósito.
+    </li>
+    <li><strong>2. A intuição é valiosa, mas precisa de direção.</strong><br>
+      AHP oferece um mapa lógico para que nossas decisões sejam mais coerentes com quem somos.
+    </li>
+    <li><strong>3. O que você valoriza define o que você decide.</strong><br>
+      Mais do que escolher certo, é escolher com consciência.
+    </li>
+  </ul>
+  <p style="font-style: italic; margin-top: 1em;">
+    “Ao aceitar o limite da vida, ganhamos a coerência do nosso propósito.”<br>
+    <strong>— Luciane Alcoforado</strong>
+  </p>
+
+## Fim
+
+![](decisoes.gif){fig-align="center"}
+
