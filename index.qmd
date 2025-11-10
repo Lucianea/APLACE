@@ -491,7 +491,7 @@ table1 = ahp_geral(base)
 formata_tabela(table1)
 ```
 
-![](vera.png)
+![](Vera.png)
 :::
 ::: {.column width="50%"}
 João: valoriza a saúde
