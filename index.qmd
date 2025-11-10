@@ -113,6 +113,8 @@ A boa notícia é que não é preciso ser um gênio para organizar nossas **deci
 "Ele criou o Analytic Hierarchy Process (AHP) como uma solução matemática para os problemas mais complexos do mundo — do planejamento estratégico à alocação de recursos."
 
 
+![](mosul.png){width=100% fig-align="center"}
+
 
 ## A Motivação de Saaty: O Dilema do Desarmamento {.smaller}
 
@@ -123,7 +125,7 @@ A boa notícia é que não é preciso ser um gênio para organizar nossas **deci
 
 3. Saaty percebeu que usamos comparações intuitivas para decidir. Isso o levou a criar o AHP: um método para transformar julgamentos humanos em decisões estruturadas.
 
-![](saaty-origemahp.png)
+![](saaty-origemahp.png){width=100% fig-align="center"}
 
 
 
@@ -194,7 +196,7 @@ Valores: Quem eu sou, o que eu valorizo e o que estou disposta a sacrificar nest
 -   **A busca pelo tênis perfeito:** A Luiza precisa de um tênis novo.
     Em vez de simplesmente comprar o mais barato ou o que está na moda, ela busca por conforto.
     
-![](sapato.gif)
+![](sapato.gif){width=100% fig-align="center"}
 
 
 ## Intui + ação 😂
@@ -203,7 +205,7 @@ Valores: Quem eu sou, o que eu valorizo e o que estou disposta a sacrificar nest
 
 -   Intuição: Ir até a loja do João do Bola Branca.
 
-![](loja.gif){width=60%}
+![](loja.gif){width=70% fig-align="center"}
 
 
 ## Passo 1: O Ponto de Partida – O Objetivo 
@@ -259,8 +261,9 @@ pontuação absoluta, comparamos:
 
 "O **critério 1** é mais importante que o **critério 2**?
 
-Quanto mais
-importante?"
+Quanto mais importante?"
+
+![](pesosmaos.gif){width=100% fig-align="center"}
 
 
 ## A escala fundamental de Saaty✨
@@ -445,6 +448,7 @@ sum(autoVetor(M))
 
 como a vida é complexa, o AHP repete este processo para o Conforto, o Custo e a Localização. No final, a Matemática nos aponta a alternativa que, de forma racional e coerente, maximiza o valor da decisão."
 
+![](stevemartin.gif){width=100% fig-align="center"}
 
 
 ## Passo 5: A Escolha Final ✅
