@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="APLACE-2025-v6_files/libs/clipboard/clipboard.min.js"></script>
+<script src="APLACE-2025-v6_files/libs/quarto-html/tabby.min.js"></script>
+<script src="APLACE-2025-v6_files/libs/quarto-html/popper.min.js"></script>
+<script src="APLACE-2025-v6_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="APLACE-2025-v6_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="APLACE-2025-v6_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="APLACE-2025-v6_files/libs/quarto-html/quarto-syntax-highlighting-0815c480559380816a4d1ea211a47e91.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.29">
+
+  <meta name="author" content="Luciane Ferreira Alcoforado, Matemática, Especialista na linguagem R">
+  <title>A matemática da AHP para a escolha coerente</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="APLACE-2025-v6_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="APLACE-2025-v6_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="APLACE-2025-v6_files/libs/revealjs/dist/theme/quarto-2c1b5f745a11cfad616ebade4a4a7d24.css">
+  <link href="APLACE-2025-v6_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="APLACE-2025-v6_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="APLACE-2025-v6_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="APLACE-2025-v6_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-image="/capa-titulo.png" data-background-opacity="0.5" data-background-size="contain" class="quarto-title-block center">
+  <h1 class="title">A matemática da AHP para a escolha coerente</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Luciane Ferreira Alcoforado, Matemática, Especialista na linguagem R 
+</div>
+</div>
+</div>
+
+</section>
+<section id="ou-isto-ou-aquilo---cecília-meireles" class="slide level2">
+<h2>Ou isto ou aquilo - Cecília Meireles</h2>
+<p style="font-size: 70%;">
+Ou se calça a luva e não se põe o anel, ou se põe o anel e não se calça a luva!
+</p>
+<p style="font-size: 70%;">
+Ou se tem chuva e não se tem sol, ou se tem sol e não se tem chuva!
+</p>
+<p style="font-size: 70%;">
+Quem sobe nos ares não fica no chão, quem fica no chão não sobe nos ares.
+</p>
+<p style="font-size: 70%;">
+É uma grande pena que não se possa estar ao mesmo tempo nos dois lugares!
+</p>
+<p style="font-size: 70%;">
+Ou guardo o dinheiro e não compro o doce, ou compro o doce e gasto o dinheiro.
+</p>
+<p><strong>Ou isto ou aquilo: ou isto ou aquilo… e vivo escolhendo o dia inteiro!</strong></p>
+<p><strong>Não sei se brinco, não sei se estudo, se saio correndo ou fico tranquilo.</strong></p>
+<p><strong>Mas não consegui entender ainda qual é melhor: se é isto ou aquilo.</strong></p>
+</section>
+<section id="bem-vindos-ao-mundo-das-escolhas" class="slide level2">
+<h2>Bem-vindos ao Mundo das Escolhas! ✨</h2>
+<p>Quem nunca teve dúvidas sobre o que escolher? 🤦‍♀️ Pense em escolhas simples.</p>
+
+<img data-src="gato-com-duvida.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:190.0%"></section>
+<section id="o-dilema-universal-da-decisão" class="slide level2">
+<h2>O Dilema Universal da Decisão 🤔</h2>
+<p>Viver é tomar <strong>decisões</strong> a todo momento.</p>
+
+<img data-src="duvida.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="escolhas-que-levam-ao-arrependimento" class="slide level2">
+<h2>Escolhas que levam ao arrependimento 😅</h2>
+<ul>
+<li><p>Deixar-se levar pelo impulso/medo (emoções)</p></li>
+<li><p>Falta de propósito/objetivo</p></li>
+<li><p>Transferir a responsabilidade para outros</p></li>
+<li><p>Não analisar os cenários/parâmetros</p></li>
+</ul>
+</section>
+<section id="prazer-sou-luciane" class="slide level2">
+<h2>Prazer, sou Luciane! 🙋‍♀️</h2>
+<p>Sou matemática por formação e atuo como professora na UFF e na AFA. Minha área de especialização é a matemática, a otimização e a estatística.</p>
+
+<img data-src="matematica.gif" class="r-stretch"></section>
+<section id="compartilho-conhecimento" class="slide level2">
+<h2>Compartilho conhecimento! 🙋‍♀️</h2>
+<p>Sou autora de diversos livros sobre a linguagem R.</p>
+
+<img data-src="capa_livro_AltaBooks.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:30.0%"><p><a href="https://www.amazon.com.br/Utilizando-linguagem-manipulação-visualização-elaboração/dp/8550814423" class="uri">https://www.amazon.com.br/Utilizando-linguagem-manipulação-visualização-elaboração/dp/8550814423</a></p>
+</section>
+<section id="mandalas" class="slide level2">
+<h2>Mandalas 🙋‍♀️</h2>
+
+<img data-src="capa_livro_mandalas.png" style="width:30.0%" class="r-stretch quarto-figure-center"><p class="caption">Livro Mandala</p></section>
+<section id="ahp-aplicada" class="slide level2">
+<h2>AHP aplicada 🙋‍♀️</h2>
+<p>Um deles é sobre o <strong>método</strong> que abordaremos hoje.</p>
+
+<img data-src="capa_livro_AHP.png" class="r-stretch quarto-figure-center"><p class="caption">Livro AHP</p></section>
+<section id="método-ahp-criado-por-thomás-saaty" class="slide level2">
+<h2>Método AHP criado por Thomás Saaty 💡</h2>
+<div class="fragment fade-out">
+<p>A boa notícia é que não é preciso ser um gênio para organizar nossas <strong>decisões</strong>.</p>
+</div>
+<div class="fragment fade-in">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="saaty.png" style="width:50.0%"></p>
+<figcaption>https://www.youtube.com/watch?v=AtutEppDCN0</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="professor-thomas-l.-saaty-1926-2017" class="slide level2 smaller">
+<h2>Professor Thomas L. Saaty (1926-2017)</h2>
+<p>“Nascido em Mosul, no Iraque (então sob administração britânica), em 1926, Saaty trilhou uma trajetória acadêmica singular. Ele obteve seu Mestrado em Física e seu PhD em Matemática pela renomada Yale University, além de ter estudado na Universidade de Paris. Ele era um visionário que percebeu que o maior desafio da tomada de decisão está em medir o Intangível.”</p>
+<p>“Ele criou o Analytic Hierarchy Process (AHP) como uma solução matemática para os problemas mais complexos do mundo — do planejamento estratégico à alocação de recursos.”</p>
+</section>
+<section id="a-motivação-de-saaty-o-dilema-do-desarmamento" class="slide level2 smaller">
+<h2>A Motivação de Saaty: O Dilema do Desarmamento</h2>
+<ol type="1">
+<li><p>Durante acordos entre EUA e União Soviética, era difícil decidir: “Quantos tanques equivalem a quantos aviões?”</p></li>
+<li><p>Economistas e teóricos de jogos não conseguiam responder com rapidez ou clareza — faltava uma forma prática de comparar itens diferentes.</p></li>
+<li><p>Saaty percebeu que usamos comparações intuitivas para decidir. Isso o levou a criar o AHP: um método para transformar julgamentos humanos em decisões estruturadas.</p></li>
+</ol>
+
+<img data-src="saaty-origemahp.png" class="r-stretch"></section>
+<section id="professor-thomas-l.-saaty-1926-2017-1" class="slide level2 smaller">
+<h2>Professor Thomas L. Saaty (1926-2017)</h2>
+<p>“Em essência, a missão de Saaty, refletida na fundação que criou, era ajudar as pessoas a fazerem escolhas mais racionais. O AHP é a disciplina que nos salva de sermos dominados pelas ambiguidades e nos dá um mapa numérico para o nosso propósito.”</p>
+
+<img data-src="fundacao_saaty.png" class="r-stretch"></section>
+<section id="aplicativo-ahpwizard" class="slide level2">
+<h2>Aplicativo AHPWIZARD 🙋‍♀️</h2>
+<p>E tenho um aplicativo de apoio à decisão registrado no INPI.</p>
+
+<img data-src="ahpwizard.png" class="r-stretch quarto-figure-center"><p class="caption">AHPWIZARD</p></section>
+<section id="falando-em-cálculos" class="slide level2">
+<h2>Falando em Cálculos… 🤓</h2>
+<p>…a matemática da decisão tem seus fundamentos profundos!</p>
+<p><span class="math display">\[
+w_i = \frac{1}{n} \sum_{j=1}^{n} \frac{a_{ij}}{\sum_{k=1}^{n} a_{kj}}
+\]</span></p>
+<p>😅 Esta é apenas uma amostra de que, sim, existe uma <strong>lógica</strong> estruturada por trás, um “motor” que sustenta a metodologia.</p>
+</section>
+<section id="o-propósito-de-nossa-conversa-hoje" class="slide level2">
+<h2>O Propósito de Nossa Conversa Hoje 🎯</h2>
+<p>Meu objetivo é demonstrar que é possível aprimorar a forma como se toma <strong>decisões</strong>, usando a <strong>lógica</strong>.</p>
+<p>Não se trata de anular a intuição, mas de oferecer-lhe um direcionamento mais claro.</p>
+
+<img data-src="direcao.gif" class="quarto-figure quarto-figure-center r-stretch"><p>Afinal, quem não deseja tomar decisões mais acertadas e com maior segurança? 😉</p>
+</section>
+<section id="intuição-e-valores" class="slide level2">
+<h2>Intuição e Valores 🙈</h2>
+<div class="fragment fade-out">
+<p>Intuição: ferramenta poderosa, conexão com nossos sentimentos mais profundos.</p>
+</div>
+<div class="fragment fade-in">
+<p>Valores: Quem eu sou, o que eu valorizo e o que estou disposta a sacrificar nesta escolha específica?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="garfield_comendo.gif"></p>
+<figcaption>Pensando Muito</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<section id="histórias-que-nos-fazem-refletir" class="slide level2">
+<h2>Histórias Que Nos Fazem Refletir 😂</h2>
+<ul>
+<li><strong>A busca pelo tênis perfeito:</strong> A Luiza precisa de um tênis novo. Em vez de simplesmente comprar o mais barato ou o que está na moda, ela busca por conforto.</li>
+</ul>
+
+<img data-src="sapato.gif" class="r-stretch"></section>
+<section id="intui-ação" class="slide level2">
+<h2>Intui + ação 😂</h2>
+<p><img data-src="sapato.gif" style="width:10.0%"></p>
+<ul>
+<li>Intuição: Ir até a loja do João do Bola Branca.</li>
+</ul>
+<p><img data-src="loja.gif" style="width:60.0%"></p>
+</section>
+<section id="passo-1-o-ponto-de-partida-o-objetivo" class="slide level2">
+<h2>Passo 1: O Ponto de Partida – O Objetivo</h2>
+<p>Pergunte: O Que Devo Ser/Fazer?”</p>
+
+<img data-src="circulo.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="passo-2-o-desdobramento-os-critérios" class="slide level2">
+<h2>Passo 2: O Desdobramento – Os Critérios</h2>
+<p>Pergunte: Quem Eu Sou e o Que Eu Valorizo?” (Ex: Custo, Prazer/Realização, Impacto, Tempo).</p>
+
+<img data-src="criterios.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="passo-3-a-estrutura-a-árvore-hierárquica" class="slide level2">
+<h2>Passo 3: A Estrutura – A Árvore Hierárquica</h2>
+<p>Mapa de ação: nossos valores abstratos em uma arquitetura lógica tridimensional.</p>
+<p>Objetivo: Comprar um tênis</p>
+<p>Critérios: 1-Conforto; 2-Preço; 3-Durabilidade</p>
+<p>Alternativas: Os modelos disponíveis na loja</p>
+
+<img data-src="arvore.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="passo-4-como-ponderar-o-que-é-mais-importante-a-comparação" class="slide level2">
+<h2>Passo 4: Como Ponderar o Que É Mais Importante? (A Comparação) ✨</h2>
+<p>Agora vem a etapa crucial: a <strong>comparação</strong>. Em vez de atribuir uma pontuação absoluta, comparamos:</p>
+<p>“O <strong>critério 1</strong> é mais importante que o <strong>critério 2</strong>?</p>
+<p>Quanto mais importante?”</p>
+</section>
+<section id="a-escala-fundamental-de-saaty" class="slide level2">
+<h2>A escala fundamental de Saaty✨</h2>
+
+<img data-src="escala_saaty.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="matriz-de-julgamentos" class="slide level2">
+<h2>Matriz de julgamentos</h2>
+<ul>
+<li><p>Confrontamos os critérios dois a dois: A-B; A-C e B-C.</p></li>
+<li><p>Regra da reciprocidade: A x B: 5 então B x A: 1/5</p></li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td></td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="objetivo-comprar-um-tênis" class="slide level2">
+<h2>Objetivo: Comprar um tênis</h2>
+<p>A (Conforto) é quão mais importante que B (preço): 5 (importância essencial)</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td>5</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>1/5</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="objetivo-comprar-um-tênis-1" class="slide level2">
+<h2>Objetivo: Comprar um tênis</h2>
+<p>A (Conforto) é mais importante que B (preço): 5</p>
+<p>A é pouco mais importante que C (durabilidade): 2</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1.00</td>
+<td>5.00</td>
+<td>2.00</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>0.20</td>
+<td>1.00</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>0.50</td>
+<td></td>
+<td>1.00</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="matemática-como-guardiã-da-integridade-do-seu-julgamento" class="slide level2">
+<h2>Matemática como Guardiã da Integridade do seu julgamento</h2>
+<p>A (Conforto) é mais importante que B: 5</p>
+<p>A é pouco mais importante que C (durabilidade): 2</p>
+<p>B (preço) é moderadamente mais importante que C: 3</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>CR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1.00</td>
+<td>5.00</td>
+<td>2.00</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>0.20</td>
+<td>1.00</td>
+<td>3.00</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>0.50</td>
+<td>0.33</td>
+<td>1.00</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><strong>0.40</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="corrigindo-o-julgamento-inconsistente" class="slide level2">
+<h2>Corrigindo o julgamento inconsistente</h2>
+<p><strong>A razão de consistência deve ser menor do que 0.1</strong></p>
+<p>Erro na lógica: A é mais importante que B: 5;</p>
+<p>B é moderadamente mais importante que C: 3;</p>
+<p>A comparado com C deve ser &gt; 5, por exemplo 7</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>CR</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1.00</td>
+<td>5.00</td>
+<td>7.00</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>0.20</td>
+<td>1.00</td>
+<td>3.00</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>0.14</td>
+<td>0.33</td>
+<td>1.00</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Pesos</td>
+<td>0.73</td>
+<td>0.19</td>
+<td>0.08</td>
+<td><strong>0.06</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="caso-da-ieda-da-moeda-à-matriz" class="slide level2">
+<h2>Caso da IEDA: Da Moeda à Matriz 😕</h2>
+<p>Objetivo: Lançar seu livro</p>
+<p>Critérios: <em>Indefinidos</em></p>
+<p>Alternativas: À tarde ou À noite?</p>
+<p>Métodos não científicos: lançar uma moeda, usar um pêndulo, pedir opiniões.🤔</p>
+<p><strong>Ela precisa estabelecer critérios para sua escolha!!!</strong></p>
+<p>Mudar a pergunta de <em>‘Que horas devo lançar?’ </em> para: <strong>‘Quem eu sou e o que eu valorizo neste lançamento?’</strong></p>
+</section>
+<section id="resgatando-a-ieda" class="slide level2">
+<h2>Resgatando a IEDA</h2>
+<p><strong>‘Quem eu sou e o que eu valorizo neste lançamento?’</strong></p>
+
+<img data-src="arvore-ieda.png" style="width:70.0%" class="r-stretch"></section>
+<section id="na-prática" class="slide level2">
+<h2>Na prática</h2>
+<p><strong>Mídia vs.&nbsp;Conforto:</strong> IEDA considera a Atenção da Mídia <em>moderadamente mais importante</em> que o conforto do Público.</p>
+<p>(Se não tiver mídia, o evento perde impacto, mesmo que seja confortável), então ela atribui</p>
+<p>valor <strong>3</strong>.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Mídia</th>
+<th>Conforto</th>
+<th>Custo</th>
+<th>Localização</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mídia</td>
+<td>1.00</td>
+<td>3.00</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Conforto</td>
+<td>0.33</td>
+<td>1.00</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Custo</td>
+<td></td>
+<td></td>
+<td>1.00</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Localização</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1.00</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="os-julgamentos-da-ieda" class="slide level2">
+<h2>Os julgamentos da IEDA</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Mídia</th>
+<th>Conforto</th>
+<th>Custo</th>
+<th>Localização</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mídia</td>
+<td>1</td>
+<td>3</td>
+<td>5</td>
+<td>1/3</td>
+</tr>
+<tr class="even">
+<td>Conforto</td>
+<td>1/3</td>
+<td>1</td>
+<td>3</td>
+<td>1/3</td>
+</tr>
+<tr class="odd">
+<td>Custo</td>
+<td>1/5</td>
+<td>1/3</td>
+<td>1</td>
+<td>1/5</td>
+</tr>
+<tr class="even">
+<td>Localização</td>
+<td>3</td>
+<td>3</td>
+<td>5</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Pesos AHP</td>
+<td>0.29</td>
+<td>0.14</td>
+<td>0.06</td>
+<td>0.5</td>
+</tr>
+</tbody>
+</table>
+<p>CR = 0.07 &lt; 0.1 👍</p>
+</section>
+<section id="o-julgamento-final-como-as-alternativas-performam" class="slide level2">
+<h2>O Julgamento Final: Como as Alternativas Performam?</h2>
+<p>Construa matrizes de julgamento para cada critério!</p>
+<p>Matriz 1: Comparação das Alternativas (Tarde vs.&nbsp;Noite) sob a Lente de do CRITÉRIO 1 (Atenção da Mídia/Imprensa).</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>Tarde</th>
+<th>Noite</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tarde</td>
+<td>1</td>
+<td>1/7</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Noite</td>
+<td>7</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Pesos AHP</td>
+<td>0.12</td>
+<td>0.88</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="o-julgamento-final" class="slide level2">
+<h2>O Julgamento Final</h2>
+<p>como a vida é complexa, o AHP repete este processo para o Conforto, o Custo e a Localização. No final, a Matemática nos aponta a alternativa que, de forma racional e coerente, maximiza o valor da decisão.”</p>
+</section>
+<section id="passo-5-a-escolha-final" class="slide level2">
+<h2>Passo 5: A Escolha Final ✅</h2>
+<p>O <strong>algoritmo</strong> indica qual opção se alinha melhor com <em>suas</em> próprias prioridades. Não é uma <strong>decisão</strong> imposta, é a sua, fundamentada!</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:left;">
+Criteria
+</th>
+<th style="text-align:center;">
+Weights
+</th>
+<th style="text-align:center;">
+A
+</th>
+<th style="text-align:center;">
+B
+</th>
+<th style="text-align:center;">
+CR
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">—Alternatives</span>
+</td>
+<td style="text-align:center;">
+<span>100% </span>
+</td>
+<td style="text-align:center;">
+<span>28.33%</span>
+</td>
+<td style="text-align:center;">
+<span style="font-weight: bold; font-size: 130%">71.67%</span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #B0FFD5; border-radius: 4px; color: black; display: block">7.34%</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">–C1 </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #a6e0bf; border-radius: 4px; color: black; display: block">28.76%</span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #a7cafb; border-radius: 4px; color: black; display: block">3.6% </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #2f7ede; border-radius: 4px; color: black; display: block">25.17%</span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #B0FFD5; border-radius: 4px; color: black; display: block">0% </span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">–C2 </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #caeeda; border-radius: 4px; color: black; display: block">14.31%</span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #adcefd; border-radius: 4px; color: black; display: block">2.38% </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #78adf0; border-radius: 4px; color: black; display: block">11.92%</span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #B0FFD5; border-radius: 4px; color: black; display: block">0% </span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">–C3 </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #def7e9; border-radius: 4px; color: black; display: block">6.45% </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #9cc3f8; border-radius: 4px; color: black; display: block">5.53% </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #b6d4ff; border-radius: 4px; color: black; display: block">0.92% </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #B0FFD5; border-radius: 4px; color: black; display: block">0% </span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="color: grey; font-weight: bold">–C4 </span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #71ca97; border-radius: 4px; color: black; display: block">50.48%</span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #5d9be9; border-radius: 4px; color: black; display: block">16.83%</span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #0060d3; border-radius: 4px; color: black; display: block">33.66%</span>
+</td>
+<td style="text-align:center;">
+<span style="background-color: #B0FFD5; border-radius: 4px; color: black; display: block">0% </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="mesmo-objetivo-decisões-diferentes" class="slide level2">
+<h2>Mesmo objetivo decisões diferentes</h2>
+<p>Objetivo: Ir à festa, Critérios: C1-Saúde e C2-Diversão; Alternativas: A-Ir ou B-Não ir</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Vera: valoriza a diversão</p>
+<p><img data-src="vera.png"></p>
+</div><div class="column" style="width:50%;">
+<p>João: valoriza a saúde</p>
+<p><img data-src="joao.png"></p>
+</div></div>
+</section>
+<section id="sua-vida-suas-melhores-escolhas" class="slide level2">
+<h2>Sua Vida, Suas Melhores Escolhas 🏆</h2>
+<p>Essa <strong>estruturação</strong> não se restringe a grandes corporações ou projetos de engenharia.</p>
+<p>Essa <strong>lógica</strong> é aplicável no cotidiano: * “Qual presente escolher para alguém especial?” 🎁 * “Qual lugar devo passar as férias?” 🎨 * “Devo aceitar aquela proposta de parceria?” 🤝 :::</p>
+</section>
+<section id="o-equilíbrio-perfeito-lógica-intuição-poder" class="slide level2">
+<h2>O Equilíbrio Perfeito: Lógica + Intuição = Poder! 🤝</h2>
+<p>Com um mapa, evitam-se obstáculos e atinge-se o destino com maior certeza.</p>
+<p>Pense assim: a intuição diz: “Vá por ali!”. A <strong>lógica</strong> pergunta: “Quais são meus valores?”. Juntas, elas o(a) conduzem na direção do seu propósito de vida! 😉</p>
+</section>
+<section id="o-sr.-valéry-e-a-casa-de-férias" class="slide level2">
+<h2>O Sr.&nbsp;Valéry e a Casa de Férias 🪦</h2>
+<p>“Eu quero uma casa com quatro portas, em quadrado, sem nenhuma parede. Evitarei perder-me em compartimentos. Seriam as férias perfeitas.”</p>
+<p>“Só consigo repousar-me se não tiver que decidir nada, e para que isso aconteça é indispensável não existirem opções. Parece-me lógico.”</p>
+<p style="font-size: 60%;">
+Trecho de “O senhor Valéry e a lógica” de Gonçalo M. Tavares, 2011.
+</p>
+</section>
+<section id="a-matemática-não-promete-direciona" class="slide level2">
+<h2>A Matemática não promete, direciona 🧭</h2>
+⚖️ 🤔
+<p style="font-size: 70%;">
+<strong>Angústia:</strong> a dor de ter que escolher, a perda de não poder ter o “isto e o aquilo” ao mesmo tempo.
+</p>
+⚰️
+<p style="font-size: 70%;">
+<strong>A fuga:</strong> O sonho da casa sem paredes, onde não há decisão. É o desejo do repouso final.
+</p>
+<p><em>Mas a vida nos exige a responsabilidade de estarmos vivos.</em></p>
+<p style="font-size: 70%;">
+<strong>Alinhamento:</strong> Analytic Hierarchy Process (AHP) é uma resposta digna. Não nos promete zerar a perda ou evitar o “isto ou aquilo”. Nossas matrizes e seus julgamentos transformam a angústia em direção numérica. O vetor que se obtém é a prova de que, ao aceitar o limite da vida, ganhamos a coerência do nosso <strong>Propósito</strong>.
+</p>
+<p>🌳 ⚖️</p>
+</section>
+<section id="fechamento-antes-de-decidir-reflita" class="slide level2">
+<h2>Fechamento: Antes de decidir, reflita…</h2>
+<ul>
+<li>
+<strong>1. Toda escolha envolve perda.</strong><br> Não dá para ter “isto e aquilo” ao mesmo tempo — mas dá para escolher com propósito.
+</li>
+<li>
+<strong>2. A intuição é valiosa, mas precisa de direção.</strong><br> AHP oferece um mapa lógico para que nossas decisões sejam mais coerentes com quem somos.
+</li>
+<li>
+<strong>3. O que você valoriza define o que você decide.</strong><br> Mais do que escolher certo, é escolher com consciência.
+</li>
+</ul>
+<p style="font-style: italic; margin-top: 1em;">
+“Ao aceitar o limite da vida, ganhamos a coerência do nosso propósito.”<br> <strong>— Luciane Alcoforado</strong>
+</p>
+</section>
+<section id="fim" class="slide level2">
+<h2>Fim</h2>
+
+
+<img data-src="decisoes.gif" class="quarto-figure quarto-figure-center r-stretch"></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="logoGrupo.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="APLACE-2025-v6_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="APLACE-2025-v6_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
