@@ -101,7 +101,6 @@ A boa notícia é que não é preciso ser um gênio para organizar nossas **deci
 :::
 
 ::: {.fragment .fade-in}
-
 ![https://www.youtube.com/watch?v=AtutEppDCN0](saaty.png){width=50%}
 :::
 
@@ -186,7 +185,7 @@ nossos sentimentos mais profundos.
 ::: {.fragment .fade-in}
 Valores: Quem eu sou, o que eu valorizo e o que estou disposta a sacrificar nesta escolha específica?
 
-![Pensando Muito](garfield_comendo.gif)
+![](garfield_comendo.gif)
 :::
 
 
@@ -493,8 +492,6 @@ base=list(M1,M2,M3)
 table1 = ahp_geral(base)
 formata_tabela(table1)
 ```
-
-
 :::
 ::: {.column width="50%"}
 João: valoriza a saúde
