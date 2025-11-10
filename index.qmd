@@ -482,8 +482,6 @@ Objetivo: Ir à festa, Critérios: C1-Saúde e C2-Diversão; Alternativas: A-Ir 
 ::: {.column width="50%"}
 Vera: valoriza a diversão
 
-![](vera.png)
-
 ```{r include=FALSE}
 M1=rbind(A=c(1,1/5), B=c(5,1))
 M2=rbind(A=c(1,1/7), B=c(7,1))
@@ -492,6 +490,8 @@ base=list(M1,M2,M3)
 table1 = ahp_geral(base)
 formata_tabela(table1)
 ```
+
+![](vera.png)
 :::
 ::: {.column width="50%"}
 João: valoriza a saúde
